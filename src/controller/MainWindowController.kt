@@ -5,6 +5,7 @@ import javafx.scene.control.Label
 import javafx.scene.layout.VBox
 import javafx.stage.FileChooser
 import javafx.stage.Stage
+import vraiment.sage.ssr.io.readSaveFile
 import java.io.File
 
 class MainWindowController {
@@ -34,6 +35,6 @@ class MainWindowController {
     }
 
     private fun loadFile(file: File) {
-        TODO()
+        placeholder.text = readSaveFile(file).toString()
     }
 }
