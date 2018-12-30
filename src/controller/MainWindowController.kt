@@ -1,10 +1,10 @@
-package vraiment.sage.savereader
+package vraiment.sage.savereader.controller
 
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.VBox
 
-class Controller {
+class MainWindowController {
     @FXML
     private lateinit var root: VBox
 
