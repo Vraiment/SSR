@@ -1,4 +1,4 @@
-package vraiment.sage.savereader.controller
+package vraiment.sage.ssr.controller
 
 import javafx.fxml.FXML
 import javafx.scene.control.Label

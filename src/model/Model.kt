@@ -1,4 +1,4 @@
-package vraiment.sage.savereader.model
+package vraiment.sage.ssr.model
 
 data class Id(val value: Int)
 

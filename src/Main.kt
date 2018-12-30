@@ -1,4 +1,4 @@
-package vraiment.sage.savereader
+package vraiment.sage.ssr
 
 import javafx.application.Application
 import javafx.application.Application.launch
