@@ -38,9 +38,9 @@ data class SaveFile(
         val conversations: Conversations,
         val times: List<Time>,
         val quests: Quests,
-        val masks: Byte,
-        val glyphFound: Byte,
-        val stoneFound: Byte,
-        val hookFound: Byte,
-        val ammo: Short
+        val masks: Byte?,
+        val glyphFound: Byte?,
+        val stoneFound: Byte?,
+        val hookFound: Byte?,
+        val ammo: Short?
 )
