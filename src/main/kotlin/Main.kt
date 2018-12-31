@@ -1,25 +1,23 @@
 package vraiment.sage.ssr
 
-import javafx.application.Application
 import javafx.application.Application.launch
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.Stage
-import java.net.URL
 
-fun main(args: Array<String>) {
-    launch(Main::class.java, *args)
+object Runner {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        launch(Application::class.java, *args)
+    }
 }
 
-val MAIN_WINDOW_URL: URL = TODO()
-const val TITLE = "Sage Save Editor"
-
-class Main : Application() {
+class Application : javafx.application.Application() {
     override fun start(primaryStage: Stage) {
-        val root: Parent = FXMLLoader.load(MAIN_WINDOW_URL)
+        val root: Parent = FXMLLoader.load(javaClass.getResource("/MainWindow.fxml"))
 
-        primaryStage.title = TITLE
+        primaryStage.title = "Sage Save Editor"
         primaryStage.scene = Scene(root)
 
         primaryStage.show()

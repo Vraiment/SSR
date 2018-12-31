@@ -19,3 +19,8 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+task run(type: JavaExec) {
+    main = 'vraiment.sage.ssr.Runner'
+    classpath = sourceSets.main.runtimeClasspath
+}
