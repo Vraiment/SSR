@@ -1,8 +1,8 @@
 package vraiment.sage.ssr.controller
 
 import javafx.fxml.FXML
+import javafx.scene.Node
 import javafx.scene.control.TreeView
-import javafx.scene.layout.VBox
 import javafx.stage.FileChooser
 import javafx.stage.Stage
 import vraiment.sage.ssr.io.readSaveFile
@@ -11,7 +11,7 @@ import java.io.File
 
 class MainWindowController {
     @FXML
-    private lateinit var root: VBox
+    private lateinit var root: Node
 
     @FXML
     private lateinit var treeView: TreeView<String>
@@ -38,6 +38,6 @@ class MainWindowController {
     private fun loadFile(file: File) {
         val saveFile = readSaveFile(file)
 
-        treeView.root = saveFile.getView(file.name)
+        treeView.root = saveFile.getView(file.name).also { it.isExpanded = true }
     }
 }
