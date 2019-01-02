@@ -12,10 +12,10 @@ fun SaveFile.getView(saveFileName: String) = treeItem(saveFileName) {
     children {
         treeItem("version = ${version.displayString}") // Byte
         treeItem("level = $level") // Byte
-        treeItem("area = ${area.displayString}") // Id
-        treeItem("position = ${position.displayString}") // Id
-        treeItem("look = ${look.displayString}") // Id
-        treeItem("toa = ${toa.displayString}") // Id
+        treeItem("area = \"${area.displayString}\"") // Id
+        treeItem("position = \"${position.displayString}\"") // Id
+        treeItem("look = \"${look.displayString}\"") // Id
+        treeItem("toa = \"${toa.displayString}\"") // Id
         treeItem("mask = $mask") // Int
         treeItem("glyph = $glyph") // Byte
         treeItem("health = $health") // Byte
@@ -84,10 +84,10 @@ private fun Int.toByteArray() = ByteBuffer.allocate(4).putInt(this).array()
 
 private val Byte.displayString get() = "0x%02X".format(this)
 
-private val Id.displayString get() = value.toByteArray().map { it.displayString }.toString()
+private val Id.displayString get() = String(value.toByteArray())
 
-private val IdInArea.displayString get() = "id = ${id.displayString} area = ${area.displayString}"
+private val IdInArea.displayString get() = "id = \"${id.displayString}\", area = \"${area.displayString}\""
 
-private val Conversation.displayString get() = "area = ${area.displayString} id = ${id.displayString} number = $number"
+private val Conversation.displayString get() = "area = \"${area.displayString}\", id = \"${id.displayString}\", number = $number"
 
-private val Time.displayString get() = " area = ${area.displayString} value = $value "
+private val Time.displayString get() = " area = \"${area.displayString}\" value = \"$value\""
