@@ -53,7 +53,13 @@ fun SaveFile.getView(saveFileName: String) = treeItem<String> {
     }
     treeItem {
         value = "conversations" // Conversations
-        treeItem { value = "conditions = ${conversations.conditions}" }
+        treeItem {
+            value = "conditions"
+
+            conversations.conditions.forEach { condition ->
+                treeItem { value = "${condition.key} = ${condition.value}"  }
+            }
+        }
         treeItem {
             value = "entries (${conversations.entries.size})"
             conversations.entries.map {
