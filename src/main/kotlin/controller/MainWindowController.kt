@@ -28,7 +28,10 @@ class MainWindowController {
     }
 
     fun displayOpenFileWindow() {
-        FILE_CHOOSER.showOpenDialog(stage)?.also { loadFile(it) }
+        FILE_CHOOSER.showOpenDialog(stage)?.also {
+            loadFile(it)
+            FILE_CHOOSER.initialDirectory = it.parentFile
+        }
     }
 
     fun quit() {
