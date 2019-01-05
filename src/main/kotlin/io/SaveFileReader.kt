@@ -2,6 +2,7 @@ package vraiment.sage.ssr.io
 
 import vraiment.sage.ssr.model.Conversation
 import vraiment.sage.ssr.model.Conversations
+import vraiment.sage.ssr.model.Conversations.Condition
 import vraiment.sage.ssr.model.Id
 import vraiment.sage.ssr.model.IdInArea
 import vraiment.sage.ssr.model.Quests
@@ -76,8 +77,48 @@ private fun InputStream.readConversation() = Conversation(
         number = readByte()
 )
 
+private fun InputStream.readConversationsConditions(): Map<Condition, Boolean> = readInt().let { value ->
+    Condition.values().associate { condition -> condition to condition.isTrue(value) }
+}
+
+// Returns true if the bit/flag for the condition is set in the input value
+private fun Condition.isTrue(value: Int): Boolean = 0 != when (this) {
+    Condition.khaka1 -> value and (1 shl 0)
+    Condition.khaka2 -> value and (1 shl 1)
+    Condition.khaka3 -> value and (1 shl 2)
+    Condition.khakadone -> value and (1 shl 3)
+    Condition.kmsk1 -> value and (1 shl 4)
+    Condition.kmsk2 -> value and (1 shl 5)
+    Condition.kmsk3 -> value and (1 shl 6)
+    Condition.kgly1 -> value and (1 shl 7)
+    Condition.kgly2 -> value and (1 shl 8)
+    Condition.kgly3 -> value and (1 shl 9)
+    Condition.kitem1_kitem3 -> value and (1 shl 10)
+    Condition.kitem2 -> value and (1 shl 11)
+    Condition.unused1 -> value and (1 shl 12)
+    Condition.kquest1 -> value and (1 shl 13)
+    Condition.kquest2 -> value and (1 shl 14)
+    Condition.kquest3 -> value and (1 shl 15)
+    Condition.kquest4 -> value and (1 shl 16)
+    Condition.kquest5 -> value and (1 shl 17)
+    Condition.kquest6 -> value and (1 shl 18)
+    Condition.kquest7 -> value and (1 shl 19)
+    Condition.kquest8 -> value and (1 shl 20)
+    Condition.kquest9 -> value and (1 shl 21)
+    Condition.kmisc1 -> value and (1 shl 22)
+    Condition.kmisc2 -> value and (1 shl 23)
+    Condition.kmisc3 -> value and (1 shl 24)
+    Condition.kmisc4 -> value and (1 shl 25)
+    Condition.kmisc5 -> value and (1 shl 26)
+    Condition.kmisc6 -> value and (1 shl 27)
+    Condition.kmisc7 -> value and (1 shl 28)
+    Condition.kmisc8 -> value and (1 shl 29)
+    Condition.kmisc9 -> value and (1 shl 30)
+    Condition.krandom -> value and (1 shl 31)
+}
+
 private fun InputStream.readConversations() = Conversations(
-        conditions = readInt(),
+        conditions = readConversationsConditions(),
         entries = readList(readShort()) { it.readConversation() }
 )
 

@@ -6,7 +6,42 @@ data class IdInArea(val id: Id, val area: Id)
 
 data class Conversation(val area: Id, val id: Id, val number: Byte)
 
-data class Conversations(val conditions: Int, val entries: List<Conversation>)
+data class Conversations(val conditions: Map<Condition, Boolean>, val entries: List<Conversation>) {
+    enum class Condition {
+        khaka1,
+        khaka2,
+        khaka3,
+        khakadone,
+        kmsk1,
+        kmsk2,
+        kmsk3,
+        kgly1,
+        kgly2,
+        kgly3,
+        kitem1_kitem3,
+        kitem2,
+        unused1,
+        kquest1,
+        kquest2,
+        kquest3,
+        kquest4,
+        kquest5,
+        kquest6,
+        kquest7,
+        kquest8,
+        kquest9,
+        kmisc1,
+        kmisc2,
+        kmisc3,
+        kmisc4,
+        kmisc5,
+        kmisc6,
+        kmisc7,
+        kmisc8,
+        kmisc9,
+        krandom
+    }
+}
 
 data class Quests(
         val quest0: Byte,
