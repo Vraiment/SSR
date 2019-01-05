@@ -6,6 +6,7 @@ import javafx.scene.control.TreeView
 import javafx.stage.FileChooser
 import javafx.stage.Stage
 import vraiment.sage.ssr.io.readSaveFile
+import vraiment.sage.ssr.view.dsl.showErrorAlert
 import vraiment.sage.ssr.view.getView
 import java.io.File
 
@@ -39,8 +40,14 @@ class MainWindowController {
     }
 
     private fun loadFile(file: File) {
-        val saveFile = readSaveFile(file)
-
-        treeView.root = saveFile.getView(file.name).also { it.isExpanded = true }
+        try {
+            val saveFile = readSaveFile(file)
+            treeView.root = saveFile.getView(file.name).also { it.isExpanded = true }
+        } catch (e: Exception) {
+            showErrorAlert {
+                title = "Error reading file"
+                headerText = "Could not read file $file due \"${e.message}\""
+            }
+        }
     }
 }
